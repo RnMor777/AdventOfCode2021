@@ -1,7 +1,12 @@
+# Opens file and writes data to arr
 f = open("Day2.txt", "r")
 arr = f.readlines()
+
+# variables for x and y positions and aim
 aim, x, y = 0, 0, 0
 
+# loops through by splitting input and then doing proper command
+# also stores the proper aim
 for i in arr:
     cmd, num = i.split(' ')
     num = int(num)
