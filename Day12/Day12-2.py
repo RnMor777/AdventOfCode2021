@@ -1,4 +1,4 @@
-def calcPath (node, count, hops):
+def calcPath (node, count, hops, smallCave):
     if (node == "end"):
         print (hops)
         return count+1
@@ -6,9 +6,12 @@ def calcPath (node, count, hops):
     for i in paths[node]:
         if (i=="start"):
             continue
-        if (i.islower() and i in hops.split(',')):
+        if (i.islower() and i in hops.split(',') and smallCave==True):
             continue
-        count = calcPath (i, count, hops+i+",")
+        if (i.islower() and i in hops.split(',')):
+            count = calcPath (i, count, hops+i+",", True)
+        else:
+            count = calcPath (i, count, hops+i+",", smallCave)
     return count
 
 f = open("Day12.txt", "r")
@@ -28,4 +31,4 @@ for i in arr:
     else:
         paths[end] = [start]
 
-print(calcPath ("start", 0, ""))
+print(calcPath ("start", 0, "", False))
